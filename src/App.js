@@ -3,30 +3,32 @@ import logo from './logo.svg';
 import HomeScreen from './component/Home';
 import AboutScreen from './component/about';
 import ContactScreen from './component/contact';
-import { Router, Route } from "react-router";
-import {routes} from './routes';
+import {BrowserRouter as Router} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+// import {Routes} from './routes/index';
+import {routes} from './routes/index';
 import './App.css';
 
 class App extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     title: 'CRUD APP',
-  //     act: 0,
-  //     index: '',
-  //     datas: [],
-  //     showTitle: false
-  //   }
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: 'CRUD APP',
+      act: 0,
+      index: '',
+      datas: [],
+      showTitle: false
+    }
+  }
 
-  // componentDidMount() {
-  //   // this.refs.name.focus();
-  // }
+  componentDidMount() {
+    // this.refs.name.focus();
+  }
 
-  // componentWillReceiveProps() {
+  componentWillReceiveProps() {
     
-  // }
+  }
 
   // submit(e) {
   //   e.preventDefault();
@@ -90,45 +92,56 @@ class App extends Component {
   render() {
     // let datas = this.state.datas;
     return (
-      <HomeScreen></HomeScreen>
-      // <Router>
-      //   <div>
-        
-      //     <Route exact path={routes.home} component={HomeScreen} />
-      //     <Route path={routes.about} component={AboutScreen} />
-      //     <Route path={routes.contact} component={ContactScreen} />
-        
-      //   </div>
-      // </Router>
+      <Router>
+        <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h3 className="App-title">{this.state.title}</h3>
+              <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            </header>
+            <Route exact path="/" render={
+              () => {
+                return (<h3 >This is app</h3>);
+              }
+            } />
+            <Route path={routes.about} component={AboutScreen}/>
+            <Route path={routes.contact} component={ContactScreen}/>
+            <Route path={routes.home} component={HomeScreen}/>
+        </div>
+      </Router>
+
       
-    //   <div className="App">
-    //     <header className="App-header">
-    //       <img src={logo} className="App-logo" alt="logo" />
-    //       <h3 className="App-title">{this.state.title}</h3>
-    //     </header>
-    //     <ul>
-    //         <li><a href="/">Home</a></li>
-    //         <li><a href="/about">About</a></li>
-    //         <li><a href="/contact">Contact</a></li>
-    //     </ul>
-    //     <HomeScreen> BLAAAAA</HomeScreen>
-    //     {this.renderTitle()}
-    //     {this.state.showTitle ? <div>SubTitulo</div> : null}
-    //     <form ref="myForm">
-    //       <input type="text" placeholder="Full Name" ref="name"/>
-    //       <input type="text" placeholder="Address" ref="address"/>
-    //       <button onClick={(e) => this.submit(e)} >Submit</button>
-    //     </form>
-    //     <div>
-    //       {datas.map((data, i) =>
-    //         <li key={i}>
-    //           {i+1}. {data.name}, {data.address}
-    //           <button onClick={() => this.remove(i)} >remove</button>
-    //           <button onClick={() => this.edit(i)} >edit</button>
-    //         </li>
-    //       )}
-    //     </div>
-    //   </div>
+      // <div className="App">
+      //   <header className="App-header">
+      //     <img src={logo} className="App-logo" alt="logo" />
+      //     <h3 className="App-title">{this.state.title}</h3>
+      //   </header>
+      //   <ul>
+      //       <li><a href="/">Home</a></li>
+      //       <li><a href="/about">About</a></li>
+      //       <li><a href="/contact">Contact</a></li>
+      //   </ul>
+      //   {this.renderTitle()}
+      //   {this.state.showTitle ? <div>SubTitulo</div> : null}
+      //   <form ref="myForm">
+      //     <input type="text" placeholder="Full Name" ref="name"/>
+      //     <input type="text" placeholder="Address" ref="address"/>
+      //     <button onClick={(e) => this.submit(e)} >Submit</button>
+      //   </form>
+      //   <div>
+      //     {datas.map((data, i) =>
+      //       <li key={i}>
+      //         {i+1}. {data.name}, {data.address}
+      //         <button onClick={() => this.remove(i)} >remove</button>
+      //         <button onClick={() => this.edit(i)} >edit</button>
+      //       </li>
+      //     )}
+      //   </div>
+      // </div>
     );
   }
 }

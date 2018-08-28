@@ -84,16 +84,7 @@ class HomeScreen extends React.Component {
       render() {
         let datas = this.state.datas;
         return (
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h3 className="App-title">{this.state.title}</h3>
-            </header>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+          <div >
             {this.renderTitle()}
             {this.state.showTitle ? <div>SubTitulo</div> : null}
             <form ref="myForm">

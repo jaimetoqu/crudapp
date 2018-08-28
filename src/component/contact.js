@@ -11,7 +11,7 @@ class ContactScreen extends React.Component {
 
     render() {
         return (
-            <div>Aboutttt</div>
+            <div>Contact</div>
         );
     }
 }
