@@ -114,6 +114,7 @@ class App extends Component {
         </div>
       </Router>
 
+      // <Home>this is home</Home>
       
       // <div className="App">
       //   <header className="App-header">

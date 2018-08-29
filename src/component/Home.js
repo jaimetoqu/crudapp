@@ -85,6 +85,8 @@ class HomeScreen extends React.Component {
         let datas = this.state.datas;
         return (
           <div >
+            {/* esto para mostrar lo que esta dentro del <Home> al llamarlo en el padre */}
+            {/* {this.props.children} */}
             {this.renderTitle()}
             {this.state.showTitle ? <div>SubTitulo</div> : null}
             <form ref="myForm">
