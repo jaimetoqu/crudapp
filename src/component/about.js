@@ -8,13 +8,19 @@ export default class AboutScreen extends React.Component {
         this.state = {
             persons: []
         };
+        this.people = [];
         this.baseUrl = "https://jsonplaceholder.typicode.com";
     }
 
     componentDidMount() {
+        this.getPersons();
+    }
+
+    getPersons() {
         axios.get(this.baseUrl + '/users').then(response => {
             console.log(response.data);
             this.setState({ persons: response.data });
+            this.people = response.data;
         })
         .catch(response => {
             console.log(response);
@@ -23,14 +29,15 @@ export default class AboutScreen extends React.Component {
 
     submit(e) {
         e.preventDefault();
-        let person = {
-            name: this.refs.name.value
+        let newData = [];
+        for (let index = 0; index < this.people.length; index++) {
+            if (this.people[index].name.toLowerCase().includes(this.refs.name.value)) {
+                console.log("llegue");
+                newData.push(this.people[index]);
+            }
         }
-        axios.post(this.baseUrl + '/users', {person}).then(response => {
-            console.log(response.data);
-        })
-        .catch(response => {
-            console.log(response);
+        this.setState({
+            persons: newData
         });
     }
 
