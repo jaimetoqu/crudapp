@@ -1,13 +1,17 @@
 import React from 'react';
 import axios from "axios";
 import {observable} from "mobx";
+import MessageModal from './message';
 
 class ContactScreen extends React.Component {
 
     constructor(props) {
         super();
         this.state = {
-            persons: []
+            persons: [],
+            person: {},
+            openModal: false,
+            simpleText: "contactttt"
         }
         this.baseUrl = "https://jsonplaceholder.typicode.com";
         // @observable showModal = false;
@@ -32,6 +36,12 @@ class ContactScreen extends React.Component {
 
     }
 
+    onOpenMessageName(newValue) {
+        this.setState({
+            simpleText: newValue
+        });
+    }
+
     render() {
         return (
             <div>Contact
@@ -43,9 +53,21 @@ class ContactScreen extends React.Component {
                     <input type="text" placeholder="website" ref="website"/>
                     <button onClick={(e) => this.submit(e)} >Submit</button>
                 </form>
+                {/* <button onClick={this.openMessage.bind(this)} >Message</button> */}
+                {/* {this.state.openModal ? <MessageModal openMsg={this.state.openModal} close={this.closeModal}/> : null} */}
+                {/* openMsg={this.openMessage.bind(this)} */}
+                {this.state.simpleText}
+                <MessageModal 
+                openMessage={this.onOpenMessageName.bind(this)}/>
             </div>
         );
     }
+
+    openModal = (a) => {
+        this.setState({
+          openModal: a
+        });
+      }
 }
 
 export default ContactScreen;
